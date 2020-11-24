@@ -1,3 +1,5 @@
+import { NuxtConfig } from '@nuxt/types'
+
 const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
@@ -10,7 +12,7 @@ const routerBase =
 const linkHref =
   process.env.DEPLOY_ENV === 'GH_PAGES' ? '/demos/favicon.ico' : '/favicon.ico'
 
-export default {
+const configs: NuxtConfig = {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'demos',
@@ -26,7 +28,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['@/plugins/composition-api.ts'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -43,6 +45,12 @@ export default {
   modules: [],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    loaders: {
+      less: {},
+    },
+  },
   ...routerBase,
 }
+
+export default configs
