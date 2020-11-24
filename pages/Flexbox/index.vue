@@ -23,7 +23,7 @@ export default defineComponent({
         src: '/flexbox/ahri.jpg',
       },
       { title: 'Ahri', src: '/flexbox/akali.jpg' },
-      { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
+      // { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
       { title: 'Evelynn', src: '/flexbox/evelynn.jpg' },
       { title: 'KaiSa', src: '/flexbox/kaisa.jpg' },
     ]
@@ -41,8 +41,8 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@images: '/flexbox/ahri.jpg', '/flexbox/akali.jpg',
-  '/flexbox/wallhaven-kwmood.jpg', '/flexbox/evelynn.jpg', '/flexbox/kaisa.jpg';
+@images: '/flexbox/ahri.jpg', '/flexbox/akali.jpg', '/flexbox/evelynn.jpg',
+  '/flexbox/kaisa.jpg';
 
 .flex-box {
   display: flex;
