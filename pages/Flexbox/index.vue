@@ -23,7 +23,7 @@ export default defineComponent({
         src: '/flexbox/ahri.jpg',
       },
       { title: 'Ahri', src: '/flexbox/akali.jpg' },
-      // { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
+      { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
       { title: 'Evelynn', src: '/flexbox/evelynn.jpg' },
       { title: 'KaiSa', src: '/flexbox/kaisa.jpg' },
     ]
@@ -43,6 +43,7 @@ export default defineComponent({
 <style lang="less" scoped>
 @images: '/flexbox/ahri.jpg', '/flexbox/akali.jpg', '/flexbox/evelynn.jpg',
   '/flexbox/kaisa.jpg';
+@colors: #cc9999, #ff9966, #cc3333, #cc9966, #cccc00;
 
 .flex-box {
   display: flex;
@@ -55,7 +56,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #ececec;
+    // background: #ececec;
     text-align: center;
     transition: font-size 0.2s cubic-bezier(0.61, -0.19, 0.7, -0.11),
       flex 0.2s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s;
@@ -68,14 +69,16 @@ export default defineComponent({
     @item: extract(@data, @i);
 
     .item@{i} {
-      background-image: url(@item);
-      background-position: center;
-      background-size: cover;
+      // background-image: url(@item);
+      // background-position: center;
+      // background-size: cover;
+      background: @item;
     }
 
     .loop(@data, (@i + 1));
   }
 
-  .loop(@images);
+  // .loop(@images);
+  .loop(@colors);
 }
 </style>
