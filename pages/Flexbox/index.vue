@@ -1,28 +1,12 @@
 <template>
   <div class="flex-box">
     <div
-      key="item1"
+      v-for="(img, index) in images"
+      :key="img.title"
+      :title="img.title"
       class="item"
-      :class="{ 'active-item': activeKey === 'item1' }"
-      @click="handleClick('item1')"
-    ></div>
-    <div
-      key="item2"
-      class="item"
-      :class="{ 'active-item': activeKey === 'item2' }"
-      @click="handleClick('item2')"
-    ></div>
-    <div
-      key="item3"
-      class="item"
-      :class="{ 'active-item': activeKey === 'item3' }"
-      @click="handleClick('item3')"
-    ></div>
-    <div
-      key="item4"
-      class="item"
-      :class="{ 'active-item': activeKey === 'item4' }"
-      @click="handleClick('item4')"
+      :class="[{ 'active-item': activeKey === img.title }, `item${index + 1}`]"
+      @click="handleClick(img.title)"
     ></div>
   </div>
 </template>
@@ -33,7 +17,16 @@ import { defineComponent, ref } from '@vue/composition-api'
 export default defineComponent({
   setup() {
     const activeKey = ref('item1')
-
+    const images = [
+      {
+        title: 'Akali',
+        src: '/flexbox/ahri.jpg',
+      },
+      { title: 'Ahri', src: '/flexbox/akali.jpg' },
+      { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
+      { title: 'Evelynn', src: '/flexbox/evelynn.jpg' },
+      { title: 'KaiSa', src: '/flexbox/kaisa.jpg' },
+    ]
     const handleClick = (key: string) => {
       activeKey.value = key
     }
@@ -41,22 +34,48 @@ export default defineComponent({
     return {
       handleClick,
       activeKey,
+      images,
     }
   },
 })
 </script>
 
 <style lang="less" scoped>
+@images: '/flexbox/ahri.jpg', '/flexbox/akali.jpg',
+  '/flexbox/wallhaven-kwmood.jpg', '/flexbox/evelynn.jpg', '/flexbox/kaisa.jpg';
+
 .flex-box {
   display: flex;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  overflow: hidden;
   .item {
     flex: 1;
-    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #ececec;
+    text-align: center;
+    transition: font-size 0.2s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+      flex 0.2s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s;
   }
   .active-item {
     flex: 3;
+    font-size: 40px;
   }
+  .loop(@data, @i: 1) when (@i =< length(@data)) {
+    @item: extract(@data, @i);
+
+    .item@{i} {
+      background-image: url(@item);
+      background-position: center;
+      background-size: cover;
+    }
+
+    .loop(@data, (@i + 1));
+  }
+
+  .loop(@images);
 }
 </style>
