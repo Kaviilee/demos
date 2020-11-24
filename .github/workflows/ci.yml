@@ -48,7 +48,7 @@ jobs:
         run: yarn lint
 
       - name: Generate pages 🔧
-        run: yarn generate
+        run: yarn generate:gh-pages
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@master
