@@ -33,14 +33,8 @@ import { defineComponent, ref } from '@vue/composition-api'
 export default defineComponent({
   setup() {
     const activeKey = ref('item1')
-    // const images = [
-    //   { title: 'Akali', src: require('/images'), background: '#ff9966' },
-    //   { title: 'Ahri', src: require(''), background: '#ff6666' },
-    //   { title: 'Evelynn', src: require(''), background: '#ff99cc' },
-    //   { title: "Kai'Sa", src: require(''), background: '#ccccff' },
-    // ]
+
     const handleClick = (key: string) => {
-      // e.target.className.concat('active-item')
       activeKey.value = key
     }
 
