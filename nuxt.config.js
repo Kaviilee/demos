@@ -7,6 +7,9 @@ const routerBase =
       }
     : {}
 
+const linkHref =
+  process.env.DEPLOY_ENV === 'GH_PAGES' ? '/demos/favicon.ico' : '/favicon.ico'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -16,7 +19,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: linkHref }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
