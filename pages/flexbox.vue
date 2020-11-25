@@ -20,12 +20,12 @@ export default defineComponent({
     const images = [
       {
         title: 'Akali',
-        src: '/flexbox/ahri.jpg',
+        key: 'akali',
       },
-      { title: 'Ahri', src: '/flexbox/akali.jpg' },
-      { title: 'all', src: '/flexbox/wallhaven-kwmood.jpg' },
-      { title: 'Evelynn', src: '/flexbox/evelynn.jpg' },
-      { title: 'KaiSa', src: '/flexbox/kaisa.jpg' },
+      { title: 'Ahri', key: 'ahri' },
+      { title: 'all', key: 'all' },
+      { title: 'Evelynn' },
+      { title: 'KaiSa' },
     ]
     const handleClick = (key: string) => {
       activeKey.value = key
