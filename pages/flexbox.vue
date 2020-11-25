@@ -41,8 +41,9 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@images: '/flexbox/ahri.jpg', '/flexbox/akali.jpg', '/flexbox/evelynn.jpg',
-  '/flexbox/wallhaven-kwmood.jpg', '/flexbox/kaisa.jpg';
+@images: '~assets/images/ahri.jpg', '~assets/images/akali.jpg',
+  '~assets/images/evelynn.jpg', '~assets/images/wallhaven-kwmood.jpg',
+  '~assets/images/kaisa.jpg';
 @colors: #cc9999, #ff9966, #cc3333, #cc9966, #cccc00;
 
 .flex-box {

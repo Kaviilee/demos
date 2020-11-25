@@ -24,6 +24,10 @@ const configs: NuxtConfig = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: linkHref }],
   },
 
+  static: {
+    prefix: false,
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
