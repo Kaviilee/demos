@@ -13,7 +13,7 @@
           </a>
           <span class="title">DAY.JS Tools</span>
         </div>
-        <div class="current-time">{{ now }}</div>
+        <div class="current-time">{{ now }} {{ `第 ${week} 周` }}</div>
       </div>
       <div class="card-content">
         <div class="time-between">
@@ -26,9 +26,24 @@
             start-placeholder="开始日期"
             end-placeholder="结束日期"
           ></el-date-picker>
-          <span class="item">间隔天数: {{ date }} 天</span>
-          <span>间隔月数: {{ month }} 月</span>
+          <span class="item">间隔天数: {{ daysbetween }} 天</span>
+          <span>间隔月数: {{ monthsbetween }} 月</span>
         </div>
+
+        <div class="is-leap">
+          <span class="label">是否为闰年</span>
+          <el-input
+            v-model="year"
+            size="small"
+            :style="{ width: '250px' }"
+            placeholder="请输入年份"
+          ></el-input>
+          <span v-show="year" class="description">{{
+            isLeap ? `是闰年` : '不是闰年'
+          }}</span>
+        </div>
+
+        <div class="relative"></div>
       </div>
     </el-card>
   </div>
@@ -41,16 +56,32 @@ import {
   onUnmounted,
   ref,
   watchEffect,
+  computed,
 } from '@vue/composition-api'
 import dayjs from 'dayjs'
+import isLeapYear from 'dayjs/plugin/isLeapYear'
+import weekOfWeek from 'dayjs/plugin/weekOfYear'
+dayjs.extend(isLeapYear)
+dayjs.extend(weekOfWeek)
 
 export default defineComponent({
   setup() {
+    // 计时器id
     const timeId = ref()
+    // 当前时间
     const now = ref()
-    const date = ref(0)
-    const month = ref(0)
+    // 间隔天数
+    const daysbetween = ref(0)
+    // 间隔月数
+    const monthsbetween = ref(0)
+    // 时间间隔
     const dateRange = ref([])
+    // 闰年输入
+    const year = ref('')
+
+    const isLeap = computed(() => dayjs(year.value).isLeapYear())
+
+    const week = dayjs().week()
 
     onMounted(() => {
       timeId.value = setInterval(() => {
@@ -65,19 +96,22 @@ export default defineComponent({
       if (dateRange.value && dateRange.value.length) {
         const start = dayjs(dateRange.value[0])
         const end = dayjs(dateRange.value[1])
-        date.value = end.diff(start, 'day')
-        month.value = end.diff(start, 'month')
+        daysbetween.value = end.diff(start, 'day')
+        monthsbetween.value = end.diff(start, 'month')
       } else {
-        date.value = 0
-        month.value = 0
+        daysbetween.value = 0
+        monthsbetween.value = 0
       }
     })
 
     return {
       now,
       dateRange,
-      date,
-      month,
+      daysbetween,
+      monthsbetween,
+      year,
+      isLeap,
+      week,
     }
   },
 })
@@ -116,6 +150,15 @@ export default defineComponent({
     .time-between {
       .item {
         margin-right: 16px;
+      }
+    }
+    .is-leap {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+
+      .description {
+        margin-left: 8px;
       }
     }
   }
