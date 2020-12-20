@@ -1,13 +1,23 @@
 <template>
   <div class="jsbase64">
     <header class="title">Base64 Decode and Encode</header>
-    <el-input
-      v-model="before"
-      type="textarea"
-      :rows="6"
-      placeholder="输入要转换的字符"
-      class="before"
-    ></el-input>
+    <div class="area">
+      <el-input
+        v-model="before"
+        type="textarea"
+        :rows="6"
+        placeholder="输入要转换的字符"
+        class="before"
+      ></el-input>
+
+      <el-input
+        v-model="after"
+        type="textarea"
+        :rows="6"
+        class="after"
+        readonly
+      ></el-input>
+    </div>
 
     <el-button
       size="medium"
@@ -18,14 +28,6 @@
     <el-button size="medium" @click="handleDecodeOrEncode('encode')"
       >解码</el-button
     >
-
-    <el-input
-      v-model="after"
-      type="textarea"
-      :rows="6"
-      class="after"
-      readonly
-    ></el-input>
   </div>
 </template>
 
@@ -66,17 +68,20 @@ export default defineComponent({
   padding: 24px;
   width: 70vw;
 
+  .area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
   .title {
     font-weight: 600;
     font-size: 1.5em;
     margin-bottom: 8px;
   }
-
-  .before {
-    margin-bottom: 16px;
-  }
-  .after {
-    margin-top: 16px;
+  .before /deep/ textarea {
+    font-family: unset !important;
   }
 }
 </style>
