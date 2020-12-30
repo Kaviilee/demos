@@ -57,7 +57,7 @@ import {
   ref,
   watchEffect,
   computed,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import dayjs from 'dayjs'
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import weekOfWeek from 'dayjs/plugin/weekOfYear'
@@ -67,7 +67,7 @@ dayjs.extend(weekOfWeek)
 export default defineComponent({
   setup() {
     // 计时器id
-    const timeId = ref()
+    let timeId: number
     // 当前时间
     const now = ref()
     // 间隔天数
@@ -84,7 +84,7 @@ export default defineComponent({
     const week = dayjs().week()
 
     onMounted(() => {
-      timeId.value = setInterval(() => {
+      timeId = window.setInterval(() => {
         now.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
       }, 1000)
     })

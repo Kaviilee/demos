@@ -32,7 +32,8 @@ const configs: NuxtConfig = {
   css: ['element-ui/lib/theme-chalk/index.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/composition-api.ts', '@/plugins/element-ui.ts'],
+  // '@/plugins/composition-api.ts',
+  plugins: ['@/plugins/element-ui.ts'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -43,6 +44,7 @@ const configs: NuxtConfig = {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/composition-api',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
