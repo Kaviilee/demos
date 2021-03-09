@@ -1,65 +1,59 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">demos</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <Logo></Logo>
+    <el-card class="main">
+      <div slot="header" class="header">进行中的项目</div>
+      <el-row :gutter="24">
+        <el-col v-for="demo in routes" :key="demo.name" :md="4">
+          <el-card class="item">
+            <nuxt-link :to="demo.path">{{ demo.name }}</nuxt-link>
+            <p v-show="demo.description" class="description">
+              {{ demo.description }}
+            </p>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
+import demoRoutes, { DemoRouteItem } from '@/configs/demoRoutes'
 
-export default Vue.extend({})
+export default defineComponent({
+  setup() {
+    const routes: DemoRouteItem[] = demoRoutes
+
+    return {
+      routes,
+    }
+  },
+})
 </script>
 
-<style>
+<style lang="less" scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 24px;
   text-align: center;
-}
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  .main {
+    min-width: 50%;
+    margin-top: 24px;
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+    .header {
+      text-align: left;
+    }
 
-.links {
-  padding-top: 15px;
+    .description {
+      font-size: 0.9em;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    // .item {
+    // }
+  }
 }
 </style>
