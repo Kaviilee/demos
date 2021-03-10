@@ -80,7 +80,8 @@ export default defineComponent({
     font-size: 1.5em;
     margin-bottom: 8px;
   }
-  .before /deep/ textarea {
+  .before /deep/ textarea,
+  .after /deep/ textarea {
     font-family: unset !important;
   }
 }

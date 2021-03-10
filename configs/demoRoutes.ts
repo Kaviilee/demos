@@ -20,11 +20,11 @@ const demoRoutes: DemoRouteItem[] = [
     name: 'jsbase64',
     description: 'Base64 decode and encode',
   },
-  {
-    path: '/carousel',
-    name: 'carousel',
-    description: 'A carousel demo',
-  },
+  // {
+  //   path: '/carousel',
+  //   name: 'carousel',
+  //   description: 'A carousel demo',
+  // },
 ]
 
 export default demoRoutes

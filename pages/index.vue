@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <Logo></Logo>
+    <div class="page-description">
+      <em>Here are some demos.</em>
+    </div>
     <el-card class="main">
       <div slot="header" class="header">进行中的项目</div>
       <el-row :gutter="24">
@@ -38,6 +41,10 @@ export default defineComponent({
   min-height: 100vh;
   padding: 24px;
   text-align: center;
+
+  .page-description {
+    color: rgba(0, 0, 0, 0.85);
+  }
 
   .main {
     min-width: 50%;
