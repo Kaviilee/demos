@@ -1,4 +1,5 @@
 # demos
+demos with nuxt
 
 ## Build Setup
 
